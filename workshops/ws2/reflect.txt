@@ -1,0 +1,66 @@
+// Name:  Reziyemu Sulaiman
+// Seneca Student ID: 106-153-208
+// Seneca email: rsulaiman2@myseneca.ca
+// Date of completion: 2022-09-22
+//
+// I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+
+Q1: What is the reason for the significant time difference between the copy and move operations?
+Ans: The subtle difference is, moving operations is faster than coping. For example, if we create with a copy or move semantic a new object based on an existing one, that the copy semantic will copy the elements of the resource, that the move semantic is simply steal the elements of the resource. 
+In my code, I used copy and move operations for TennisLog class. In copy operations, I checked for self assignment first, then I cleaned up the dynamic resource used by the current object, then I made shallow copy for statically allocated data, then I made a deep copy by allocating memory for the object and copy each elements from other object to this object. However, in move oprations, I just stealed the contents of the other object by assigning the address of dynamically allocated data of other object to this object. Then, I throwed the other object by setting its content to nullptr. Since coping an object means we have to copy its contents in memory, and moving means the data in memory stays as it is. Only the difference to this data is moved from old object to the object we are moving to. Therefore, coping the data in the object takes much more time than moving. 
+Q2: describe approach taken to read the input file (tennis-data.csv) in the TennisLog constructor and populate the dynamic array. Is there any way to avoid rereading the file?
+Ans: In the TennisLog one argument constructor, which is:
+TennisLog::TennisLog(const char* filename)
+   {
+      string str;
+      unsigned int noOfMatch{ 0u };
+
+      ifstream myFile(filename);
+
+      if (myFile.is_open()) {
+         getline(myFile, str);
+
+         while (myFile) {
+            getline(myFile, str);
+            noOfMatch++;
+         }
+         noOfMatch--;
+
+         matches = new TennisMatch[noOfMatch];
+         myFile.clear();
+         myFile.seekg(0);
+
+         getline(myFile, str);
+
+         while (myFile) {
+            getline(myFile, str, ',');
+            if (myFile) {
+               matches[count].t_id = str;
+               getline(myFile, str, ',');
+               matches[count].t_name = str;
+               getline(myFile, str, ',');
+               matches[count].m_id = stoul(str);
+               getline(myFile, str, ',');
+               matches[count].m_winner = str;
+               getline(myFile, str);
+               matches[count].m_loser = str;
+               count++;
+            }
+         }
+         myFile.close();
+
+      }
+      else {
+         cerr << "Error: Could not open file: " << filename << endl;
+      }
+   }
+ At first, in order to use ifstream to read the input file, I included fstream library on the top of my file. Then, I created a local variblle called string str for file reading. Then, after I declared and openned the file, I used getline to read first line of string and took away the header out, so it will not be counted. Then I started using while loop to read the data by line by line and counted the number of matches. Then allocated memory for the matched Tennis players, and started rereading the file, and used the same procedure again. Then, for those matched data, I copied each data individually from the data in the buffer string str to the member data of struct TennisMatch bu using getline (comma as delimeter), and counted number of matches. 
+There is alternative way to avoid rereading data from file. For example, Instead of closing and opening the file, we can use flush() the written content, and sync() the content to the read buffer, then seekp() the put pointer to the start of the file on each iteration. 
+
+Q3: In the links above to chrono library, you were directed to use a steady_clock to take a timestamp. Do some research and explain the difference between a steady_clock and a system_clock. Are they the same? When should each one be used?
+Ans: The difference between a steady clock and system clock is that, If we're holding a system_clock in our hand, we would call it a watch, and it would tell us what time it is. However, If we're holding a steady_clock in your hand, we would call it a stopwatch, and it would tell you how fast someone ran a lap, but it would not tell us what time it is. Steady_clock is specifically designed to calculate time intervals. Since a steady_clock ensures that the time between ticks is constant, making it better for measuring intervals than using a system clock. The system clock provides wall-clock time. The problem that we face with using wall-clock time to measure elapsed time is wall-clock time may get modified while measuring a time interval. So, a steady_clock isn't subject to these adjustments, making it the preferred way to keep track of elapsed time. 
+
+
+
+
+

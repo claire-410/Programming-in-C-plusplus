@@ -1,0 +1,92 @@
+// Name:  Reziyemu Sulaiman
+// Seneca Student ID: 106-153-208
+// Seneca email: rsulaiman2@myseneca.ca
+// Date of completion: 2022-10-13
+
+in this workshop, I learned class relationships such as composition and aggregation. I learned how to differentiate between these two types of relationships, as well as the difference between copy and move operations whithin these two types of relationships. 
+To begin with, I want to describe how I chose each types of member data of class Reservation carefully. First, I statically acllocated array with size of 11 chars in the reservation class. The reason why I allocated only 11 chars is because of the format of reservation id has to be printed on screen in a field of size 10. I also chose name and id as strings since it is difficult to predict the size of these two values. It is more convenient for me to choose string type rather than dynamically allocated array. I declared the numbe of people as unsigned coz it is positive number of guests. I also declared day and hours as unsigned char because both of them has to be in range of 1-28, 1-24 charracters, respectivly. 
+constexpr int SIZE{ 11 }; 
+class Reservation
+   {
+      char m_id[SIZE]{};
+      std::string m_name{};
+      std::string m_email{};
+      unsigned m_guestCount{};
+      unsigned char m_day{};  // between 1-28
+      unsigned char m_hour{}; // between 1-24
+   public:
+      Reservation()=default;
+      Reservation(const std::string& res);
+      void update(int day, int time);
+      friend std::ostream& operator<<(std::ostream&, const Reservation&);
+   };
+
+Next, I would like to talk about the main concetpts that I learned in this workshop. through implemeting confirmationOrder, and restaurant classes, I learned what is composition, and what is aggregation, and how to differentiate between these two relations. For example, the relationshop between reservation class and restaurant class is composition. The class restaurant ownes the reservation class since it fully contains reservation class and determines its life time. The born time of reservation class til its dye are completley controlled by the class restaturant. 
+class Restaurant
+   {
+      size_t m_count{};
+      Reservation** m_reservations{};
+      void deallocate();
+
+   public:
+      Restaurant(const Reservation* reservations[], size_t count);
+      Restaurant(const Restaurant& restaurant);
+      Restaurant(Restaurant&& restaurant);
+      ~Restaurant();
+      Restaurant& operator=(const Restaurant& restaurant);
+      Restaurant& operator=(Restaurant&& restaurant);
+      size_t size() const;
+      friend std::ostream& operator<<(std::ostream&, const Restaurant& restaurant);
+   };
+
+However, the relationship between confirmationServer and reservation class is aggregation. Because their relationship is, the confirmationServer class may have reservation, but it can exist without any reservation. Its responsibility is to manage reservation by adding or deleting new reservation from the array. confirmationServer class does not manage the lifetime of the reservation class. 
+class ConfirmationSender
+   {
+      const Reservation** m_reservations{};
+      size_t m_count{};
+
+   public:
+      ConfirmationSender() = default;
+      ConfirmationSender(const ConfirmationSender& cs);
+      ConfirmationSender(ConfirmationSender&& cs);
+      ~ConfirmationSender();
+      ConfirmationSender& operator=(const ConfirmationSender& cs);
+      ConfirmationSender& operator=(ConfirmationSender&& cs);
+      ConfirmationSender& operator+=(const Reservation& res);
+      ConfirmationSender& operator-=(const Reservation& res);
+      friend std::ostream& operator<<(std::ostream& os,
+         const ConfirmationSender& cs);
+   };
+
+finally, in a composition relationship between classes, such as relation between restaurant and reservation classes, when we implement copy operations we have to deallocate preexisted class resources first, then allocate new resources using for loops copy each elements by value from one object to another. However, in agreegation relationship, such as, the relationship between confirmationServer and reservation classes. In copy operations, we only have to allocate and deallocate the pointers, then copy the address of memory stored in the other object. We dont have to control the life time of the reservation class. In addition, when we implement move operations in composition relationship, we have to deallocate preexisting class resources in restaurant class, then copy the address of the data. In the aggregation, we have to deallocate the class resources first, then copy the address of all of the class resources memory.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

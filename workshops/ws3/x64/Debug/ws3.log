@@ -1,0 +1,7 @@
+﻿  UniqueQueue.cpp
+C:\Users\reziy\Documents\semester_5\BTP305\workshops\ws3\UniqueQueue.cpp(5,42): error C2995: 'bool sdds::UniqueQueue<double>::push(const T &)': function template has already been defined
+          with
+          [
+              T=double
+          ]
+C:\Users\reziy\Documents\semester_5\BTP305\workshops\ws3\UniqueQueue.h(15): message : see declaration of 'sdds::UniqueQueue<double>::push'

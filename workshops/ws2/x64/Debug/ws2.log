@@ -1,0 +1,5 @@
+﻿  TennisLog.cpp
+C:\Users\reziy\Documents\semester_5\BTP305\workshops\ws2\TennisLog.cpp(112,29): warning C4018: '<': signed/unsigned mismatch
+C:\Users\reziy\Documents\semester_5\BTP305\workshops\ws2\TennisLog.cpp(142,26): warning C4018: '<': signed/unsigned mismatch
+C:\Users\reziy\Documents\semester_5\BTP305\workshops\ws2\TennisLog.cpp(157,26): warning C4018: '<': signed/unsigned mismatch
+  ws2.vcxproj -> C:\Users\reziy\Documents\semester_5\BTP305\workshops\ws2\x64\Debug\ws2.exe
