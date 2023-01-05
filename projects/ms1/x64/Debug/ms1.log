@@ -1,0 +1,6 @@
+﻿  Station.cpp
+C:\Users\reziy\Documents\semester_5\BTP305\project\ms1\Station.cpp(22,22): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  Utilities.cpp
+  ms1.cpp
+  Generating Code...
+  ms1.vcxproj -> C:\Users\reziy\Documents\semester_5\BTP305\project\ms1\x64\Debug\ms1.exe
