@@ -1,0 +1,22 @@
+// Name:  Reziyemu Sulaiman
+// Seneca Student ID: 106-153-208
+// Seneca email: rsulaiman2@myseneca.ca
+// Date of completion: 2022-11-30
+//
+// I have done all the coding by myself and only copied the code that my classmate provided to complete my workshops and assignments.
+
+
+
+In this workshop, I was able to learn the new features of C++ such as thread and bind. First of all, I dealt with the input and output of files in this workshop, but I used binary files differently than usual. The difference between a basic file and a binary file is whether the user can see the contents with his or her eyes when opening the file. This difference is why I used this binary file in this workshop. Because it had to store secure data, it was saved in binary form so that users could not easily read the file. I added a new argument to read or write binary files in the ifstream and ofstream. "ios::binary" specifies that the file should be read or write in binary form. For example “std::ifstream file(filename, std::ios::in | std::ios::binary);” and "std::ofstream file(filename, std::ios::out | std::ios::binary);”. Also, because binary files use ASCII, they are fast in terms of speed and can be reduced in memory usage.
+	I used "std::bind" in this workshop, and the most important thing was to match the arguments well. First, std::bind is a function that allows some parameters of a function to be set to a fixed value and then once wrapped to be used. To do so, put the function and the corresponding arguments in std::bind. Because the function is wrapped and declared in one variable, an error occurs if arguments are not matched. I used function "digForTreasure" using std::bind in this workshop such as “std::bind(digForTreasure, std::placeholders::_1, mark);"
+	Finally, I used "thread". The computer executes the program that I ordered sequentially. However, it is the thread that commands a computer to use multiple processes to perform multiple tasks at the same time. This process reduces memory space and system resource consumption once it is done at once. Even if one thread terminates the task, the other continues to perform the task. I used a total number of four threads, and partitioned the data equally amongst those threads. Since the packaged_task defines a simple wrapper for passing the result of a task to a future object, I also used get_future() member function to retrive the future object.
+
+std::packaged_task<size_t(std::string)> t1(dig);  
+std::packaged_task<size_t(std::string)> t2(dig);
+std::packaged_task<size_t(std::string)> t3(dig);
+std::packaged_task<size_t(std::string)> t4(dig);
+auto f1 = t1.get_future();
+auto f2 = t2.get_future();
+auto f3 = t3.get_future();
+auto f4 = t4.get_future();
+
