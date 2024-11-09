@@ -1,9 +1,4 @@
-// Name:  Reziyemu Sulaiman
-// Seneca Student ID: 106-153-208
-// Seneca email: rsulaiman2@myseneca.ca
-// Date of completion: 2022-12-03
-//
-// I have done all the coding by myself and only copied the code that my classmate provided to complete my workshops and assignments.
+
 
 I believe this is the hardest milestone that I’ve completed throughout this course (especially the milestone 3). I had a lot of struggles and hard times throughout milestone 3. This milestone tests the overall knowledge that we learned throughout this semester. First of all, I have to have deeper understanding STL containers, algorithms, as well as inheritance between the classes. Second, I had to understand the logic behind each module and each class, and each function that I was working on. I found it is difficult to complete each module of the milestone without complete understanding of the logic behind it. Third, I had to review previous milestone before preceding next milestone. 
 By doing this milestone, it helped me to strengthen my knowledge about STL containers, algorithms, and pointers.The most difficult part for me is “attemptToMoveOrder” function in workstation module, the two argument constructor and “run” function in LineManager module. 
